@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event - MFMDALLAS</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-wrap">
+            <div class="site-branding">
+                <span class="site-title">
+                    <a href="{% url 'home' %}"><img src="{% static 'img/logo4.png' %}" alt="Brand"></a>
+                </span>
+            </div>
+            <nav class="primary-nav">
+                <ul class="primary-nav-list nav">
+                    <li class="menu-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="menu-item"><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li class="menu-item"><a href="{% url 'event_list' %}">EVENTS</a></li>
+                    <li class="menu-item"><a href="{% url 'sermon_list' %}">SERMONS</a></li>
+                    <li class="menu-item"><a href="{% url 'contact' %}">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="event-form section">
+        <div class="container">
+            <div class="section-header">
+                <h2>CREATE EVENT</h2>
+                <p>Fill out the form below to add a new event.</p>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <form method="post" class="event-create-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="col-sm-12 text-center">
+                    <button type="submit" class="t-btn submit-btn">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="site-footer section black-bg text-center">
+        <div class="container">
+            <p class="copy-right">Copyright 2025. Design </p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/vendor/jquery-3.2.0.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

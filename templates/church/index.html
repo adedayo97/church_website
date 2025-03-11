@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Awesome Themez">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- Page Title -->
+    <title>MFMDALLAS</title>
+    <!-- Favicon Icon -->
+    {% load static %}
+    <link rel="icon" href="{% static favicon %}" type="image/x-icon">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Modernizr -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+  </head>
+
+  <body>
+    <!-- Start Preloader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+    </div>
+    
+    <header class="site-header">
+      <div class="container header-wrap">
+          <div class="site-branding">
+            <span class="site-title">
+              <a href="#"><img src="{% static logo %}" alt="Brand"></a>
+            </span>
+          </div>
+          <nav class="primary-nav">
+            <ul class="primary-nav-list nav">
+              <li class="menu-item menu-item-has-children current-menu-ancestor current-menu-parent active"><a href="#home">HOME</a>
+                
+              </li>
+              <li class="menu-item"><a href="{% url 'about' %}">ABOUT</a></li>
+              <li class="menu-item"><a href="#service">SERVICE</a></li>
+              <li class="menu-item"><a href="#gallery">GALLERY</a></li>
+              <li class="menu-item"><a href="{% url 'event_list' %}">EVENT</a></li>
+              <li class="menu-item"><a href="{% url 'sermon_list' %}">NEWS</a></li>
+              <li class="menu-item"><a href="{% url 'contact' %}">CONTACT</a></li>
+            </ul>
+          </nav>
+      </div><!-- .header-wrap -->
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero text-center" id="home">
+      <div class="single-slide">
+        <div class="container">
+          <h1>WELCOME TO MFM DALLAS</h1>
+          <h3>Join us in building the house of God</h3>
+          <div class="hero-btn-group">
+            <a href="" class="t-btn hero-btn-1">JOIN US NOW</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-slider owl-carousel">
+        {% for hero_image in hero_images %}
+          <img src="{% static hero_image %}" alt="Hero Image">
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Weekly Activities -->
+    <!-- Weekly Activities -->
+<!-- Weekly Activities -->
+<section class="feature section black-bg" id="weekly-activities">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>WEEKLY ACTIVITIES</h2>
+      <p class="lead">Join us for our regular gatherings and events</p>
+    </div>
+    <div class="activity-grid">
+      <div class="activity-card">
+        <i class="fas fa-pray"></i>
+        <h3>Sunday Service</h3>
+        <p>10:00 AM - 12:00 PM</p>
+      </div>
+      <div class="activity-card">
+        <i class="fas fa-bible"></i>
+        <h3>Bible Study</h3>
+        <p>Wednesday, 7:00 PM - 8:30 PM</p>
+      </div>
+      <div class="activity-card">
+        <i class="fas fa-hands-praying"></i>
+        <h3>Prayer Meeting</h3>
+        <p>Friday, 6:00 PM - 7:00 PM</p>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- About Section -->
+<!-- About Section -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>About Us</h2>
+      <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks and the unlimited demonstration of the power of God to deliver to the uttermost</p>
+    </div>
+    <div class="row flex">
+      <div class="col-lg-6">
+        <div class="about-content">
+          <h3>Our Mission</h3>
+          <p>We are committed to spreading the gospel and demonstrating the power of God through worship, prayer, and community outreach. Join us in our journey to revive apostolic signs and support those in need.</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="video-section">
+          <!-- YouTube Embed -->
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" width="816" height="459" src="https://www.youtube.com/embed/FpbFH8J6usg?modestbranding=1&autohide=1&showinfo=0&controls=0" allowfullscreen></iframe>
+          </div>
+          <!-- Uncomment below for Vimeo if needed -->
+          <!--
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" width="816" height="458" src="https://player.vimeo.com/video/172077385?title=0&byline=0&portrait=0&color=EE5A3F&autoplay=0&loop=0&wmode=transparent" allowfullscreen></iframe>
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- Services Section -->
+    <!-- Services Section -->
+    <!-- Services Section -->
+<section class="service section black-bg" id="service">
+  <div class="container">
+    <div class="section-header white">
+      <h2>SERVICES</h2>
+      <p></p>
+    </div>
+    <div class="zoom">
+      <div class="row flex text-center">
+        {% for service_image in service_images %}
+          <div class="col-sm-3">
+            <div class="single-feature">
+              <a href="{% static service_image %}" class="gallery-item">
+                <img src="{% static service_image %}" alt="Service Image">
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="single-feature">
+        <i class="icofont icofont-building-alt"></i>
+        <h3>OUR SERVICES</h3>
+        <p>At MFM Dallas, our services are more than just gatherings—they are divine encounters where lives are transformed, prayers are answered, and faith is strengthened. Through worship, teaching, and community outreach, we are committed to nurturing spiritual growth and creating an atmosphere where everyone can experience the power and presence of God.
+
+          No matter where you are in your faith journey, there’s a place for you at MFM Dallas. Join us and experience the power, love, and presence of God in a life-changing way!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Donate Section -->
+<section class="donate section text-center" id="donate">
+  <div class="container">
+    <div class="section-header">
+      <h2>HELP THE NEEDY & GIVE TODAY</h2>
+      <p>Your generosity can transform lives. Donate securely via Zelle—no fees, instant transfers!</p>
+    </div>
+    <div class="donate-content">
+      <div class="donate-methods">
+        <h3>Donate with Zelle</h3>
+        <ul class="donate-instructions">
+          <li><strong>Step 1:</strong> Open your banking app or Zelle.</li>
+          <li><strong>Step 2:</strong> Send to <strong>donations@mfmdallas.org</strong>.</li>
+          <li><strong>Step 3:</strong> Enter your amount and send!</li>
+        </ul>
+        <p class="donate-note">100% of your donation goes to our programs—Zelle charges no fees!</p>
+      </div>
+      <a href="#donate" class="t-btn donate-btn" onclick="alert('Please use your banking app to send to donations@mfmdallas.org via Zelle.')">DONATE NOW</a>
+    </div>
+  </div>
+</section>
+
+    <!-- Gallery Section -->
+    <!-- Gallery Section -->
+<<!-- Gallery Section -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <h2>GALLERY</h2>
+      <p>Welcome to our Gallery, where we showcase the vibrant life of our church community. Through these images, we invite you to witness the love, faith, and unity that define our journey together. Each picture tells a story of faith, joy, and togetherness—a reflection of God’s presence in our lives. As you explore our gallery, may you feel His warmth and blessings in every captured moment.
+
+        Join us and be a part of these unforgettable experiences!</p>
+    </div>
+    <div class="portfolio zoom-gallery gutter-less">
+      <div class="grid-sizer"></div>
+      {% for image in gallery_images %}
+        <div class="portfolio-item">
+          <a href="{{ image.image.url|default:'/static/img/default-gallery.jpg' }}" class="gallery-item">
+            <img src="{{ image.image.url|default:'/static/img/default-gallery.jpg' }}" alt="Gallery Image">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+    <!-- Team Section -->
+   <section class="team section black-bg">
+  <div class="container">
+    <div class="section-header">
+      <h2>OUR PASTORS</h2>
+      <p></p>
+    </div>
+    <div class="row flex text-center">
+      {% for pastor in pastor_images %}
+        <div class="col-sm-3">
+          <div class="team-member">
+            <div class="member-thumb">
+              <img src="{% static pastor.image %}" alt="{{ pastor.name }}">
+              <div class="member-social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+            <h3 class="member-name">{{ pastor.name }}</h3>
+            <span class="designation">{{ pastor.designation }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+    <!-- Event Section -->
+    <!-- Event Section -->
+     
+    <!-- Contact Section -->
+    <!-- Contact Section -->
+<!-- Contact Section -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>GET IN TOUCH</h2>
+      <p class="lead">Connect with Us</p>
+    </div>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Contact Details</h3>
+        <ul class="contact-list">
+          <li><i class="fa fa-envelope"></i> <a href="mailto:[email protected]">[email protected]</a></li>
+          <li><i class="fa fa-phone"></i> +1 (469) 353-3712</li>
+          <li><i class="fa fa-map-marker"></i> Dallas, TX</li>
+        </ul>
+        <div class="social-links">
+          <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fa fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form action="{% url 'contact' %}" method="POST">
+          {% csrf_token %}
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="contact-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- Footer -->
+    <footer class="site-footer section black-bg text-center">
+      <div class="container">
+        <p class="copy-right">Copyright 2025. Design </p>
+        <div class="social-btn">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-behance"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Scripts -->
+<script data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/cloudflare-static/email-decode.min.js"></script>
+
+<script src="{% static 'js/vendor/jquery-3.2.0.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<!-- Comment out Cloudflare script for local development -->
+<!--
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91d57418cf3aafad',t:'MTc0MTQ2OTYzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+-->
+  </body>
+</html>

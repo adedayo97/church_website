@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - MFMDALLAS</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-wrap">
+            <div class="site-branding">
+                <span class="site-title">
+                    <a href="{% url 'home' %}"><img src="{% static 'img/logo4.png' %}" alt="Brand"></a>
+                </span>
+            </div>
+            <nav class="primary-nav">
+                <ul class="primary-nav-list nav">
+                    <li class="menu-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="menu-item"><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li class="menu-item"><a href="{% url 'contact' %}">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about section">
+        <div class="container">
+            <!-- Main About Section -->
+            <div class="section-header">
+                <h2>ABOUT US</h2>
+                <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
+            </div>
+
+            <!-- Church History -->
+            <div class="history-section">
+                <h3>Our History</h3>
+                <p>
+                    Founded in 1989, Mountain of Fire and Miracles Ministries (MFM) began as a small prayer group dedicated to spiritual revival and deliverance. Under the visionary leadership of Dr. Daniel Kolawole Olukoya, the ministry grew from humble beginnings in Lagos, Nigeria, to a global movement. The Dallas branch, established , continues this legacy, serving as a beacon of hope and transformation in the community. Our history is marked by countless testimonies of God’s power, fervent prayer, and unwavering faith.
+                </p>
+                <!-- Add more history content here as needed -->
+            </div>
+
+            <!-- Leadership Profiles -->
+            <div class="leadership-section">
+                <h3>Our Leadership</h3>
+                <div class="row flex text-center">
+                    <!-- General Overseer -->
+                    <div class="col-sm-6">
+                        <div class="leader-profile">
+                            <div class="leader-thumb">
+                                <img src="{% if overseer.image|slice:':4' == 'img/' %}{% static overseer.image %}{% else %}{{ overseer.image }}{% endif %}" alt="{{ overseer.name }}" class="leader-img">
+                            </div>
+                            <h4 class="leader-name">{{ overseer.name }}</h4>
+                            <span class="leader-title">{{ overseer.title }}</span>
+                            <p class="leader-bio">{{ overseer.bio }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Regional Pastor -->
+                    <div class="col-sm-6">
+                        <div class="leader-profile">
+                            <div class="leader-thumb">
+                                <img src="{% if regional.image|slice:':4' == 'img/' %}{% static regional.image %}{% else %}{{ regional.image }}{% endif %}" alt="{{ regional.name }}" class="leader-img">
+                            </div>
+                            <h4 class="leader-name">{{ regional.name }}</h4>
+                            <span class="leader-title">{{ regional.title }}</span>
+                            <p class="leader-bio">{{ regional.bio }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer section black-bg text-center">
+        <div class="container">
+            <p class="copy-right">Copyright 2022. Design by Awesome Themez</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/vendor/jquery-3.2.0.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

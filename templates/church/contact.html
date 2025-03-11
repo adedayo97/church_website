@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - MFMDALLAS</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Inline CSS for textbox styling (adjust as needed) -->
+    <style>
+        .contact-textbox {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-textbox .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-textbox label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .contact-textbox input, .contact-textbox textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .contact-textbox .submit-btn {
+            background: #5b023d;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .contact-textbox .submit-btn:hover {
+            background: #41022e;
+        }
+        .message.success {
+            color: green;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-wrap">
+            <div class="site-branding">
+                <span class="site-title">
+                    <a href="{% url 'home' %}"><img src="{% static 'img/logo4.png' %}" alt="Brand"></a>
+                </span>
+            </div>
+            <nav class="primary-nav">
+                <ul class="primary-nav-list nav">
+                    <li class="menu-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="menu-item"><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li class="menu-item"><a href="{% url 'event_list' %}">EVENTS</a></li>
+                    <li class="menu-item"><a href="{% url 'sermon_list' %}">SERMONS</a></li>
+                    <li class="menu-item"><a href="{% url 'contact' %}">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>CONTACT</h2>
+                <p>Connect with Us<br>mfmdallastexas@gmail.com<br>+1 (469) 353-3712</p>
+            </div>
+            <div class="contact-textbox">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    <!-- Render form fields manually for better control -->
+                    <div class="form-group">
+                        <label for="{{ form.name.id_for_label }}">Name</label>
+                        {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.subject.id_for_label }}">Subject</label>
+                        {{ form.subject }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.message.id_for_label }}">Message</label>
+                        {{ form.message }}
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="t-btn submit-btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer section black-bg text-center">
+        <div class="container">
+            <p class="copy-right">Copyright 2025. Design </p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/vendor/jquery-3.2.0.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

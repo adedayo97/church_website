@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sermons - MFMDALLAS</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-wrap">
+            <div class="site-branding">
+                <span class="site-title">
+                    <a href="{% url 'home' %}"><img src="{% static 'img/logo4.png' %}" alt="Brand"></a>
+                </span>
+            </div>
+            <nav class="primary-nav">
+                <ul class="primary-nav-list nav">
+                    <li class="menu-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="menu-item"><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li class="menu-item"><a href="{% url 'event_list' %}">EVENTS</a></li>
+                    <li class="menu-item"><a href="{% url 'sermon_list' %}">SERMONS</a></li>
+                    <li class="menu-item"><a href="{% url 'contact' %}">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="sermon section">
+        <div class="container">
+            <div class="section-header">
+                <h2>OUR SERMONS</h2>
+            </div>
+            <div class="row flex">
+                {% for sermon in sermons %}
+                    <div class="col-lg-6">
+                        <h3>{{ sermon.title }}</h3>
+                        <p>{{ sermon.date }}</p>
+                        <p>{{ sermon.content }}</p>
+                        <p>Preacher: {{ sermon.preacher }}</p>
+                        {% if sermon.audio_url %}
+                            <audio controls>
+                                <source src="{{ sermon.audio_url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p>No sermons available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer section black-bg text-center">
+        <div class="container">
+            <p class="copy-right">Copyright 2022. Design by Awesome Themez</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/vendor/jquery-3.2.0.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
