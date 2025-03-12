@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-23^d#0g_*@ymksamtwn7mog0k&ua&ue-*j3z-6hek^40clsbn(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['your-username.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['church-website.ondigitalocean.app']
 
 
 # Application definition
@@ -133,7 +133,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # Add this line to specify where static files should be collected
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 STATICFILES_DIRS = [
