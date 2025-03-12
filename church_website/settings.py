@@ -133,7 +133,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # Add this line to specify where static files should be collected
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 STATICFILES_DIRS = [
