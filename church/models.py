@@ -1,10 +1,7 @@
+# church/models.py
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
-
-
-
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
@@ -35,17 +32,11 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return self.subject
-    
-from django.db import models
-
- 
-
-
-from django.db import models
 
 def upload_to_path(instance, filename):
     return f'uploads/{instance.category}/{filename}'
 
+# church/models.py
 class ImageUpload(models.Model):
     CATEGORY_CHOICES = [
         ('service', 'Service'),
@@ -58,6 +49,7 @@ class ImageUpload(models.Model):
     description = models.CharField(max_length=200, blank=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='gallery')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    designation = models.CharField(max_length=100, blank=True, null=True)  # New field
 
     def __str__(self):
         return f"{self.category} - {self.description or 'No description'}"

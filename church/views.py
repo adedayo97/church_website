@@ -8,45 +8,83 @@ from .models import Event, Sermon, ContactMessage, ImageUpload
 from .forms import ContactForm, EventForm
 
 
+# church/views.py
+from django.shortcuts import render
+from django.conf import settings
+import os
+from .models import Event, Sermon, ImageUpload
+
 def home(request):
+    # Fetch latest events and sermons
     latest_events = Event.objects.order_by('-date')[:3]
     latest_sermons = Sermon.objects.order_by('-date')[:3]
     uploaded_images = ImageUpload.objects.all()
-    
-    # Image filtering with safe fallbacks
-    hero_images = uploaded_images.filter(category='hero')[:2] if uploaded_images.filter(category='hero').exists() else [
-        'img/homepage3.png', 'img/homepage.png',
-    ]
-    
-    # Gallery images with fallback
+
+    # Hero images from admin uploads
+    hero_images = uploaded_images.filter(category='hero')[:2]
+    if not hero_images.exists():
+        hero_images = [
+            {'image': {'url': '/static/img/homepage3.png'}},
+            {'image': {'url': '/static/img/homepage.png'}},
+        ]
+
     gallery_images = uploaded_images.filter(category='gallery')[:6]
     if not gallery_images.exists():
-        gallery_images = [{'image': {'url': '/static/img/default-gallery.jpg'}}] * 6  # Fallback list
+        gallery_images = [{'image': {'url': '/static/img/default-gallery.jpg'}}] * 6
+        print("No gallery uploads, using fallback")
     else:
-        # Check each image file exists; replace with fallback if missing
-        gallery_images = [
-            image if os.path.exists(os.path.join(settings.MEDIA_ROOT, image.image.name)) 
-            else {'image': {'url': '/static/img/default-gallery.jpg'}}
-            for image in gallery_images
+        gallery_images = [{'image': {'url': image.image.url}} for image in gallery_images]
+        print("Gallery Images Count:", len(gallery_images))
+        print("Gallery Images URLs:", [img['image']['url'] for img in gallery_images])
+    # Pad with fallback if less than 6
+    while len(gallery_images) < 6:
+        gallery_images.append({'image': {'url': '/static/img/default-gallery.jpg'}})
+        print("Padded with fallback, new count:", len(gallery_images))
+
+    # Service images from admin uploads
+    service_images = uploaded_images.filter(category='service')[:4]
+    if not service_images.exists():
+        service_images = [
+            {'image': {'url': '/static/img/service1.jpeg'}},
+            {'image': {'url': '/static/img/service2.jpeg'}},
+            {'image': {'url': '/static/img/service3.jpg'}},
+            {'image': {'url': '/static/img/service4.jpeg'}},
         ]
-    
-    service_images = [
-        'img/service1.jpeg',
-        'img/service2.jpeg',
-        'img/service3.jpg',
-        'img/service4.jpeg',
-    ]
-    
-    event_images = uploaded_images.filter(category='event')[:3] if uploaded_images.filter(category='event').exists() else []
-    pastor_images = uploaded_images.filter(category='pastor')[:2] if uploaded_images.filter(category='pastor').exists() else [
-        {'name': 'DR. D.K. Olukoya', 'image': 'img/gallery21.jpg', 'designation': 'GENERAL OVERSEER'},
-        {'name': 'David Popoola', 'image': 'img/gallery22.jpeg', 'designation': 'REGIONAL OVERSEER'},
-    ]
-    
+
+    # Event images from admin uploads
+    event_images = uploaded_images.filter(category='event')[:3]
     events_with_images = [
         {'event': event, 'image': event_images[i].image.url if i < len(event_images) and event_images[i].image else None}
         for i, event in enumerate(latest_events)
     ]
+
+    # Pastor images from admin uploads
+    # Pastor images (fixed)
+    # Pastor images
+    pastor_images = uploaded_images.filter(category='pastor')[:2]
+    if not pastor_images.exists():
+        pastor_images = [
+            {'name': 'DR. D.K. Olukoya', 'image': {'url': '/static/img/gallery21.jpg'}, 'designation': 'GENERAL OVERSEER'},
+            {'name': 'David Popoola', 'image': {'url': '/static/img/gallery22.jpeg'}, 'designation': 'REGIONAL OVERSEER'},
+        ]
+    else:
+        designation_map = {
+            'DR. D.K. Olukoya': 'GENERAL OVERSEER',
+            'David Popoola': 'REGIONAL OVERSEER',
+        }
+        pastor_images = [
+            {
+                'name': image.description or 'Pastor',
+                'image': {'url': image.image.url},
+                'designation': designation_map.get(image.description, 'Church Leader')
+            }
+            for image in pastor_images
+        ]
+    print("Pastor Images Full Data:", [
+        {'name': p['name'], 'image': p['image']['url'], 'designation': p['designation']}
+        for p in pastor_images
+    ])
+
     context = {
         'latest_events': events_with_images,
         'latest_sermons': latest_sermons,
@@ -58,7 +96,6 @@ def home(request):
         'favicon': 'img/favicon.jpeg',
     }
     return render(request, 'church/index.html', context)
-
 # Rest of your views (event_list, sermon_list, contact, event_create, about) remain unchanged
 def event_list(request):
     events = Event.objects.order_by('-date')

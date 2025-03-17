@@ -59,22 +59,23 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero text-center" id="home">
-      <div class="single-slide">
-        <div class="container">
-          <h1>WELCOME TO MFM DALLAS</h1>
-          <h3>Join us in building the house of God</h3>
-          <div class="hero-btn-group">
-            <a href="" class="t-btn hero-btn-1">JOIN US NOW</a>
-          </div>
-        </div>
+    <!-- Hero Section -->
+<section class="hero text-center" id="home">
+  <div class="single-slide">
+    <div class="container">
+      <h1>WELCOME TO MFM DALLAS</h1>
+      <h3>Join us in building the house of God</h3>
+      <div class="hero-btn-group">
+        <a href="" class="t-btn hero-btn-1">JOIN US NOW</a>
       </div>
-      <div class="hero-slider owl-carousel">
-        {% for hero_image in hero_images %}
-          <img src="{% static hero_image %}" alt="Hero Image">
-        {% endfor %}
-      </div>
-    </section>
+    </div>
+  </div>
+  <div class="hero-slider owl-carousel">
+    {% for hero_image in hero_images %}
+      <img src="{% if hero_image.image.url %}{{ hero_image.image.url }}{% else %}{% static hero_image.image.url %}{% endif %}" alt="Hero Image">
+    {% endfor %}
+  </div>
+</section>
 
     <!-- Weekly Activities -->
     <!-- Weekly Activities -->
@@ -150,8 +151,8 @@
         {% for service_image in service_images %}
           <div class="col-sm-3">
             <div class="single-feature">
-              <a href="{% static service_image %}" class="gallery-item">
-                <img src="{% static service_image %}" alt="Service Image">
+              <a href="{% if service_image.image.url %}{{ service_image.image.url }}{% else %}{% static service_image.image.url %}{% endif %}" class="gallery-item">
+                <img src="{% if service_image.image.url %}{{ service_image.image.url }}{% else %}{% static service_image.image.url %}{% endif %}" alt="Service Image">
               </a>
             </div>
           </div>
@@ -162,9 +163,8 @@
       <div class="single-feature">
         <i class="icofont icofont-building-alt"></i>
         <h3>OUR SERVICES</h3>
-        <p>At MFM Dallas, our services are more than just gatherings—they are divine encounters where lives are transformed, prayers are answered, and faith is strengthened. Through worship, teaching, and community outreach, we are committed to nurturing spiritual growth and creating an atmosphere where everyone can experience the power and presence of God.
-
-          No matter where you are in your faith journey, there’s a place for you at MFM Dallas. Join us and experience the power, love, and presence of God in a life-changing way!</p>
+        <p>At MFM Dallas, our services are more than just gatherings—they are divine encounters where lives are transformed, prayers are answered, and faith is strengthened. Through worship, teaching, and community outreach, we are committed to nurturing spiritual growth and creating an atmosphere where everyone can experience the power and presence of God.</p>
+        <p>No matter where you are in your faith journey, there’s a place for you at MFM Dallas. Join us and experience the power, love, and presence of God in a life-changing way!</p>
       </div>
     </div>
   </div>
@@ -194,30 +194,27 @@
 
     <!-- Gallery Section -->
     <!-- Gallery Section -->
-<<!-- Gallery Section -->
+<!-- Gallery Section -->
 <section class="gallery section" id="gallery">
   <div class="container">
     <div class="section-header">
       <h2>GALLERY</h2>
-      <p>Welcome to our Gallery, where we showcase the vibrant life of our church community. Through these images, we invite you to witness the love, faith, and unity that define our journey together. Each picture tells a story of faith, joy, and togetherness—a reflection of God’s presence in our lives. As you explore our gallery, may you feel His warmth and blessings in every captured moment.
-
-        Join us and be a part of these unforgettable experiences!</p>
+      <p>Welcome to our Gallery...</p>
     </div>
     <div class="portfolio zoom-gallery gutter-less">
       <div class="grid-sizer"></div>
       {% for image in gallery_images %}
         <div class="portfolio-item">
-          <a href="{{ image.image.url|default:'/static/img/default-gallery.jpg' }}" class="gallery-item">
-            <img src="{{ image.image.url|default:'/static/img/default-gallery.jpg' }}" alt="Gallery Image">
+          <a href="{% if image.image.url %}{{ image.image.url }}{% else %}{% static image.image.url %}{% endif %}" class="gallery-item">
+            <img src="{% if image.image.url %}{{ image.image.url }}{% else %}{% static image.image.url %}{% endif %}" alt="Gallery Image">
           </a>
         </div>
       {% endfor %}
     </div>
   </div>
 </section>
-
-    <!-- Team Section -->
-   <section class="team section black-bg">
+<!-- Team Section -->
+<section class="team section black-bg">
   <div class="container">
     <div class="section-header">
       <h2>OUR PASTORS</h2>
@@ -228,7 +225,7 @@
         <div class="col-sm-3">
           <div class="team-member">
             <div class="member-thumb">
-              <img src="{% static pastor.image %}" alt="{{ pastor.name }}">
+              <img src="{% if pastor.image.url %}{{ pastor.image.url }}{% else %}{% static pastor.image.url %}{% endif %}" alt="{{ pastor.name }}">
               <div class="member-social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -242,7 +239,6 @@
     </div>
   </div>
 </section>
-
     <!-- Event Section -->
     <!-- Event Section -->
      
@@ -289,8 +285,6 @@
         <div class="social-btn">
           <a href="#"><i class="fa fa-facebook"></i></a>
           <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-linkedin"></i></a>
-          <a href="#"><i class="fa fa-behance"></i></a>
         </div>
       </div>
     </footer>
